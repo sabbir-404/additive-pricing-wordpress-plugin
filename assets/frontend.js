@@ -32,8 +32,13 @@ jQuery(function ($) {
     // Find the standard price element to update
     var $priceTarget = $('.woocommerce-variation-price');
     if (!$priceTarget.length) {
-        // Try appending one if missing
-        $form.prepend('<div class="woocommerce-variation-price"></div>');
+        // Try placing it right before the add to cart button wrap instead of top of form
+        var $addToCartWrap = $('.woocommerce-variation-add-to-cart');
+        if ($addToCartWrap.length) {
+            $addToCartWrap.before('<div class="woocommerce-variation-price" style="font-size: 22px; font-weight: 700; margin-bottom: 15px;"></div>');
+        } else {
+            $form.prepend('<div class="woocommerce-variation-price" style="font-size: 22px; font-weight: 700; margin-bottom: 15px;"></div>');
+        }
         $priceTarget = $('.woocommerce-variation-price');
     }
 
